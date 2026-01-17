@@ -1,0 +1,165 @@
+.page {
+    display: none;
+  }
+  .page.flex.active {
+    display: flex;
+  }
+  .page.grid.active{
+      display: grid;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    display: flex;
+    height: 100vh;
+    font-family: sans-serif;
+  }
+
+  /* 侧边栏样式 */
+#sidebar {
+  width: 220px;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 70px 20px 20px; /* 增加顶部间距 */
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 按钮之间间距 */
+}
+
+/* 按钮通用样式 */
+#sidebar button {
+  width: 100%;
+  padding: 18px 18px;
+  background-color: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 10px;
+  color: #3498db;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+/* 悬停效果 */
+#sidebar button:hover {
+  background-color: #e6f0fb;
+  color: #2c80b4;
+  transform: translateX(2px);
+}
+
+/* 激活按钮样式：深色背景，白字 */
+#sidebar button.active {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #2c80b4;
+  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.2);
+}
+/* 数字徽章（通知用） */
+#sidebar button .badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 12px;
+  pointer-events: none;
+  display: none; /* 默认不显示 */
+}
+
+/* 有通知时显示徽章 */
+#sidebar button.has-notify .badge {
+  display: inline-block;
+}
+
+/* 如果激活按钮也有通知，颜色可以不一样（可选） */
+#sidebar button.active.has-notify .badge {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #2c80b4;
+  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.2);
+}
+
+
+  #content {
+  flex: 1;
+  padding: 20px;
+    position: relative;
+}
+.toast {
+  visibility: hidden;
+  min-width: 200px;
+  margin-left: -100px;
+  background-color: #5d77a9;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 30px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+
+
+
+#page1{
+  
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  grid-template-rows: repeat(2, 250px);
+  grid-template-columns: repeat(2, 300px);/* 两列，每列宽度 120px */
+  gap: 20px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: max-content;       /* 让容器大小跟随内容 */
+
+  }
+#page1.shifted {
+  
+  transform: translate(-80%,-50%); 
+}
+  #page1 button {
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  }
+  #page1 button:hover {
+  background-color: #2980b9;
+  transform: scale(1.02)
+  }
+
+
+

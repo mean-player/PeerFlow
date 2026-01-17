@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Muvex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="page_2.css">
+    <link rel="stylesheet" href="page_3.css">
+    <link rel="stylesheet" href="page_4.css">
+    <link rel="stylesheet" href="page_5.css">
+    <link rel="stylesheet" href="page_6.css">
+    <link rel="stylesheet" href="page_7.css">
+    <link rel="stylesheet" href="right_card.css">
+</head>
+
+<body>
+
+<div id="sidebar">
+    <button class='active' onclick="showPage('page1')">创建链接</button>
+    <button onclick="showPage('page5')">上传请求
+    <span class='badge'>0</span>
+    </button>
+    <button  onclick="showPage('page6')">正在上传
+    <span class='badge'>0</span>
+    </button>
+    <button id="ulink">上传链接</button>
+    <button id="dlink">下载链接</button>
+    <button id="qulink">快速上传链接</button>
+    <button id="qdlink">快速下载链接</button>
+
+    <button onclick="showPage('page7')">设置</button>
+</div>
+<div id="content">
+    <div id="toast" class="toast">这是提示信息</div>
+  <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 -->
+    <div id="page1" class="page grid active">
+
+        <button onclick="showPage('page4')">上传链接</button>
+        <button onclick="showPage('page3')">下载链接</button>
+        <button  id="QULink">快速上传链接</button>
+        <button  id="QDLink">快速下载链接</button>
+    </div>
+
+
+    <!-- 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 -->
+    <div id="page2" class="page flex links-scope">
+        <div id="links">
+            <!-- 顶部操作区（20%） -->
+            <div class="link-controls">
+
+                <div class="filter-options">
+        <label>
+      <input type="radio" name="statusFilter" value="" checked />
+      所有
+        </label>
+    <label>
+      <input type="radio" name="statusFilter" value="1" />
+      有效
+    </label>
+    <label>
+      <input type="radio" name="statusFilter" value="0" />
+      无效
+    </label>
+  </div>
+                <button onclick='cleanInvaluableLinks()'>清除失效</button>
+    </div>
+
+            <!-- 记录显示区（80%） -->
+            <div id="link-list">
+                <div class="link-item">
+                    <span>记录标题 1</span>
+                    <span>状态：有效</span>
+                    <button>删除</button>
+                </div>
+
+
+                <!-- 更多记录行... -->
+            </div>
+        </div>
+
+        <div id="link_file">
+            <!-- 顶部输入区（30%） -->
+            <div class="query-inputs">
+                <!-- 第一行 -->
+                <div class="row">
+                    <span>链接描述:  </span>
+                    <input type="text" placeholder="desc" class="input" id="desc">
+                    <button id="change">修改</button>
+                </div>
+
+                <!-- 第二行 -->
+                <div class="row">
+                    <span id="verify_desc">是否需要密码: </span>
+                    <select id="verify">
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                    </select>
+                    <input type="text" placeholder="password" id="password">
+                    <span>链接使用次数: </span>
+                    <span id="used">used</span>
+
+                </div>
+
+                <!-- 第三行 -->
+                <div class="row time">
+                    <span>创建时间: </span>
+                    <span  id="create_time" ></span>
+                    <span>过期时间: </span>
+                    <input type="datetime-local" id="expire_time" name="datetime" min="">
+
+                </div>
+            </div>
+
+            <div class="URLAndQR">
+              <div class="linkBlock">
+              <label>链接</label>
+              <span id="url"></span>
+              <button id="copyURL">复制</button>
+              </div>
+            <div class="qrBlock">
+              <label>二维码</label>
+              <div id="qrcode"></div>
+
+            </div>
+            </div>
+
+            <div class='AllFileInfo'>
+                <div class='NumAndSize' id='numAndSize'></div>
+                <div class='openDirBtnGroup hidden' id="openDirBtnGroup">
+                    <button id='openDirBtn'>打开文件夹</button>
+                </div>
+            </div>
+
+
+
+            <!-- 表格区域（70%） -->
+            <div class="query-table" id="file-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>文件名称</th>
+                        <th>文件类型</th>
+                        <th>文件大小</th>
+                        <th>文件路径</th>
+                        <th>user</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tr>
+                    <!-- 更多记录... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 -->
+    <!-- create download link -->
+
+    <div id="page3" class="page flex">
+
+        <!-- 返回按钮 + 标题 -->
+        <div class="header">
+
+            <button id ='back' >返回</button>
+            <h2>创建下载链接</h2>
+
+            <button id="submitBtn" data-mode="createLink">创建</button>
+        </div>
+
+        <!-- 表单区域 -->
+        <div class="form-section">
+            <div class="row">
+                <label for="title">命名：</label>
+                <input type="text" id="title" placeholder="请输入名称">
+            </div>
+
+            <div class="row">
+                <label for="setPassword">设置密码：</label>
+                <select id="setPassword">
+                    <option value="no">否</option>
+                    <option value="yes">是</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="password">密码：</label>
+                <input type="password" id="password_1" placeholder="请输入密码">
+            </div>
+
+            <div class="row">
+                <label for="expire">过期时间：</label>
+                <input type="datetime-local" id="expire" min=''>
+            </div>
+
+
+
+            <div class="row">
+                <label >选择文件：</label>
+                <button id='selectFileBtn' class="custom-file-upload">
+                选择文件
+               </button>
+            </div>
+        </div>
+
+        <!-- 表格区域 -->
+        <div class="table-section">
+            <h3>已选择文件</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>type</th>
+                    <th>size</th>
+                    <th>path</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="fileTableBody">
+                <!-- JS 动态插入选中文件信息 -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="result-section hidden" id="resultSection" >
+            <div class="result-text">
+                <label>生成链接：</label>
+                <div class ='link-and-button'>
+                <span type="text" id="resultText" ></span>
+                <button id='copyResult3'>复制</button>
+                </div>
+            </div>
+            <div id="result-image"></div>
+        </div>
+
+    </div>
+
+<!-- 44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 -->
+<!-- create upload link -->
+    <div id="page4" class="page flex">
+        <!-- 顶部栏：返回按钮 + 标题 + 创建按钮 -->
+        <div class="header">
+
+                <button id='back_2'>返回</button>
+                <h2>创建上传链接</h2>
+
+            <button id="submitBtn_2" data-mode="createLink">创建</button>
+        </div>
+
+        <!-- 表单区域 -->
+        <div class="form-section">
+            <div class="row">
+                <label for="nameInput">命名：</label>
+                <input type="text" id="nameInput" placeholder="请输入名称">
+            </div>
+
+            <div class="row">
+                <label for="setPwd">设置密码：</label>
+                <select id="setPwd">
+                    <option value="no">否</option>
+                    <option value="yes">是</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <label for="passwordInput">密码：</label>
+                <input type="password" id="passwordInput_2" placeholder="请输入密码">
+            </div>
+
+            <div class="row">
+                <label for="expireInput">过期时间：</label>
+                <input type="datetime-local" id="expireInput">
+            </div>
+
+
+        </div>
+
+        <!-- 创建结果显示区域（默认隐藏） -->
+        <div class="result-section4 hidden" id="result4" >
+            <div class="result-text4">
+                <label>创建链接：</label>
+                <div class ='link-and-button-2'>
+                <span type="text" id="resultText4" ></span>
+                <button id='copyResult4'>复制</button>
+                </div>
+            </div>
+            <div id="result-image4"></div>
+        </div>
+    </div>
+
+
+
+<!-- 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 -->
+<div id="page5" class="page flex">
+    <button id="slideBtn" data-mode="view">打开侧栏</button>
+    <h3>请求列表</h3>
+    <div id="requestContainer" class = 'RequestContainer'></div>
+</div>
+
+
+
+
+
+<!-- 66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666 -->
+    <div id="page6" class="page flex">
+
+    <!-- 右上角按钮 -->
+  <button id="slideBtn_2" data-mode="view_2">打开侧栏</button>
+  <h3>上传列表</h3>
+  <div id="uploadingList" class="file-list"></div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777 -->
+    <div id="page7" class="page grid">
+        <h2>设置页面</h2>
+        <div class='page7-container'>
+        <div class="page7-section">
+      <div class="page7-section-label" id="page7-label-ip">当前 IP 地址：</div>
+      <div class="page7-section-value" id="page7-ipAddress"></div>
+
+    </div>
+
+    <div class="page7-section">
+      <div class="page7-section-label" id="page7-label-port">开放端口：</div>
+      <input type='text'  placeholder='' id="page7PortInput">
+      <div class="page7-button-group">
+        <button data-mode='changePort' class="page7-button page7-button-single" id="page7-changePortsBtn">更改</button>
+      </div>
+    </div>
+
+
+
+    <div class="page7-section">
+      <div class="page7-section-label" id="page7-label-log">日志大小：</div>
+      <div class="page7-log-size-display" id="page7-logSize"></div>
+      <div class="page7-button-group">
+
+        <button class="page7-button page7-button-single" id="page7-openLogBtn">打开</button>
+      </div>
+    </div>
+
+    
+
+
+    </div>
+    </div>
+
+
+
+
+
+<!-- 快速下载链接弹出层 -->
+<div id="quickDownloadPanel" class="card hidden">
+
+   <div class="qd-header">
+        <button id="qdCancel">取消</button>
+        <button id="qdActionBtn" data-mode = 'createQDLink'>创建</button>
+    </div>
+    <div class="qd-content">
+        <label for="qdDesc">描述：</label>
+        <input type="text" id="qdDesc"  class='qd-desc-input' placeholder="" />
+
+        <label for="qdFileInput">选择文件：</label>
+        <button id='selectQdFileBtn' class="custom-file-upload">
+         选择文件
+
+        </button>
+
+
+        <div class="qd-file-list" id="qdFileList"></div>
+
+        <div class="qd-result hidden" id="qdResult">
+            <div class="result-text-qd">
+                <label>创建链接：</label>
+                <span type="text" id="resultQd" ></span>
+                <button id='copyQdResult'>复制</button>
+            </div>
+            <div id="result-imageQd"></div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- 快速上传链接弹出层 -->
+<div id="quickUploadDiv" class="card hidden">
+    <div class="popup-header">
+        <button id="cancelQuickUpload" class="popup-btn">取消</button>
+        <button id="createQuickUpload" class="popup-btn create-btn" data-mode='createQULink'>创建</button>
+    </div>
+    <div class="popup-body">
+        <label for="desc-input">描述：</label>
+        <input type="text" id="quickUploadDesc" class="desc-input" placeholder=""/>
+        <div id="QUResult" class="QUResult hidden">
+            <div class="result-text-qU">
+                <label>创建链接：</label>
+                <span type="text" id="resultQU" ></span>
+                <button id='copyQUResult'>复制</button>
+            </div>
+            <div id="result-imageQU"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 审核结果 -->
+<div id="auditPanel" class="card hidden">
+  <h3 class='auditH3'>审核历史</h3>
+
+  <div class='OptionsAndBtn'>
+  <div class="filter-options">
+    <label>
+      <input type="radio" name="auditFilter" value="approve" checked />
+      同意
+    </label>
+    <label>
+      <input type="radio" name="auditFilter" value="reject" />
+      否决
+    </label>
+    <label>
+      <input type="radio" name="auditFilter" value="none" />
+      未决定
+    </label>
+  </div>
+
+  <button id='clear-all-audit'  class='clear-all-audit' >清除同意审核记录</button>
+  </div>
+
+  <div class="audit-records">
+
+    </div>
+</div>
+
+
+
+
+ <!-- 未上传完成的 -->
+<div id="progressPanel" class = 'card hidden'>
+  <div class="progress-header">
+    <h2>未完成的上传进度</h2>
+    <button class="clear-all-btn">清除所有</button>
+  </div>
+
+  <div id='progress-list' class="progress-list" >
+
+
+    <!--  .upload-item 多次作为多条记录 -->
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="spark-md5.min.js"></script>
+<script src="main.js"></script>
+<script src="qrcode.min.js"></script>
+<script src="page_1_qd.js"></script>
+<script src="page_1_qu.js"></script>
+<script src="page_2.js"></script>
+<script src="page_3.js"></script>
+<script src="page_4.js"></script>
+<script src="page_6.js"></script>
+<script src="page_5.js"></script>
+<script src="page_7.js"></script>
+<script src="page_5_approve.js"></script>
+<script src="page_6_progress.js"></script>
+
+
+</body>
+</html>

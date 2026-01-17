@@ -1,0 +1,49 @@
+{
+  "name": "Muvex",
+  "version": "1.0.0",
+  "main": "start.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^24.6.0"
+  },
+  "build": {
+    "appId": "com.muvex.app",
+    "productName": "Muvex",
+    "files": [
+      "**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "../java",
+        "to": "java"
+      },
+      {
+        "from": "../data",
+        "to": "data"
+      },
+      {
+        "from": "../config",
+        "to": "config"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "forceCodeSigning": false,
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "public/muvex.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "@stomp/stompjs": "^7.1.1",
+    "mime-types": "^3.0.1",
+    "sockjs-client": "^1.6.1"
+  }
+}

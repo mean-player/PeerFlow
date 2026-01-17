@@ -1,0 +1,115 @@
+/* 整体容器 */
+#page7 {
+  width: 80%;
+  height: 80%;
+  margin: 80px auto 60px;
+  padding: 32px 40px;
+  background: linear-gradient(145deg, #f0f4ff, #d9e4ff);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(30, 60, 120, 0.15);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  gap: 32px;
+}
+
+/* 标题 */
+#page7 h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1a1f36;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+/* 内部容器 */
+.page7-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 每个设置项的卡片 */
+.page7-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.page7-section:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* 左侧标签 */
+.page7-section-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  min-width: 180px;
+  user-select: text;
+}
+
+/* 中间显示值 */
+.page7-section-value,
+.page7-log-size-display {
+  flex: 1;
+  font-size: 1rem;
+  color: #556677;
+  padding: 0 16px;
+  word-break: break-word;
+  user-select: text;
+}
+
+/* 按钮组 */
+.page7-button-group {
+  display: flex;
+  gap: 12px;
+}
+
+/* 按钮样式 */
+.page7-button {
+  padding: 8px 20px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #5a8dee;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(90, 141, 238, 0.35);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.1s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.page7-button:hover {
+  background-color: #3e6edc;
+  box-shadow: 0 6px 15px rgba(62, 110, 220, 0.5);
+}
+
+.page7-button:active {
+  background-color: #2e57b0;
+  box-shadow: 0 3px 8px rgba(46, 87, 176, 0.6);
+  transform: translateY(1px);
+}
+
+#page7PortInput {
+  flex: 1;             /* 让输入框占据剩余空间 */
+  min-width: 120px;    /* 最小宽度，避免太窄 */
+  max-width: 300px;    /* 最大宽度，防止太宽 */
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  margin-left: 16px;   /* 输入框左侧空隙 */
+  margin-right: 12px;
+}

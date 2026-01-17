@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传界面</title>
+    <style>
+        html, body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #f2f4f8;
+        }
+
+        .container {
+          max-width: 600px;
+          margin: 40px auto;
+          background-color: #fff;
+          padding: 30px 40px;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .section {
+          margin-bottom: 20px;
+        }
+
+        .label {
+          font-weight: 500;
+          margin-bottom: 6px;
+          color: #333;
+        }
+
+
+
+        .readonly-text {
+          background-color: #f7f7f7;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          color: #555;
+          font-size: 14px;
+        }
+
+        .input, .datetime, .status, .file-input {
+          width: 100%;
+          padding: 10px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-sizing: border-box;
+        }
+
+        .status {
+          background-color: #eef2f5;
+          font-weight: bold;
+          color: #2c3e50;
+        }
+
+        .button {
+          width: 100%;
+          padding: 10px;
+          background-color: #27ae60;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .button:hover {
+          background-color: #219150;
+        }
+
+        .username {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        max-width: 300px;
+        }
+
+        .username label {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.3rem;
+        }
+
+       .username input {
+       padding: 0.5rem;
+       font-size: 1rem;
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       transition: border-color 0.2s, box-shadow 0.2s;
+       }
+
+       .username input:focus {
+       outline: none;
+       border-color: #007bff;
+       box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+       }
+
+
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 16px;
+        }
+
+        table th, table td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: center;
+          font-size: 14px;
+        }
+
+        table th {
+          background-color: #f0f3f7;
+          font-weight: 600;
+        }
+
+        input[type="file"] {
+        display: none; /* 完全隐藏原始 file 按钮 */
+        }
+
+        .custom-file-upload {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        font-size: 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        }
+
+        .custom-file-upload:hover {
+        background-color: #2980b9;
+        }
+
+
+
+  .toast {
+  visibility: hidden;
+  min-width: 200px;
+  margin-left: -100px;
+  background-color: #4e7cd3;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 30px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div id="toast" class="toast">这是提示信息</div>
+    <div class="section">
+        <div class="label">提示信息：</div>
+        <div class="text-display" id="desc"></div>
+    </div>
+
+
+
+    <div class="username">
+        <label for="usernameInput">请输入你的姓名或描述（可选）</label>
+        <input type="text" placeholder="默认用户" id="usernameInput">
+    </div>
+
+    <div class="section">
+        <div class="text-display">下载链接将在过期时间后失效。</div>
+    </div>
+
+    <!-- 过期时间显示 -->
+    <div class="section">
+        <div class="label">过期时间：</div>
+        <div class="text-display" id="expire_time"></div>
+    </div>
+
+
+    <!-- 状态显示 -->
+    <div class="section">
+        <div class="label">状态</div>
+        <div class="status" id="statusContainer">
+            <p id="statusText">无操作</p >
+        </div>
+    </div>
+
+
+
+    <!-- 文件选择器 -->
+    <div class="section">
+        <div class="label">选择文件</div>
+        <label class="custom-file-upload">
+            选择文件
+        <input type="file" class="file-input"  id="fileInput" >
+        </label>
+    </div>
+
+    <!-- 上传按钮 -->
+    <div class="section">
+        <button class="button" id="upload"  data-mode="upload">确认上传</button>
+    </div>
+
+    <!-- 文件表格 -->
+    <div class="section">
+        <div class="label">已选择文件列表</div>
+        <table id="files">
+            <thead>
+            <tr>
+                <th>文件名</th>
+                <th>类型</th>
+                <th>大小</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="fileInfo">
+            <!-- 更多行通过 JS 动态添加 -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="/sockjs.min.js"></script>
+<script src="/stomp.min.js"></script>
+<script src="/spark-md5.min.js"></script>
+<script src="/upload.js"></script>
+</body>
+</html>

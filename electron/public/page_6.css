@@ -1,0 +1,123 @@
+#page6 {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    width: 90%;
+    height: 95%;
+    margin: 40px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /*position: relative;*/
+  }
+#page6.shifted {
+  width: 70%;
+   transform: translate(-70%,-50%); 
+}
+  /* 文件列表 */
+  .file-list {
+    margin-top: 50px;
+    display: flex;
+    width: 90%;
+    overflow-y:auto;
+    padding-right: 8px;
+    flex-direction: column;
+    gap: 1rem;
+  }
+/* 自定义滚动条（现代浏览器） */
+.file-list::-webkit-scrollbar {
+  width: 8px;
+}
+.file-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.file-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+  .file-item {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .file-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .file-item .title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .file-item .progress-bar {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.6rem 0;
+  }
+
+  .file-item .progress {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0;
+    transition: width 0.3s ease;
+  }
+
+  .file-item .status {
+    font-size: 13px;
+    color: #555;
+    margin-top: 0.3rem;
+  }
+
+  .file-item .interrupt-btn {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s ease;
+    
+  }
+
+  .file-item .interrupt-btn:hover {
+    background: #c0392b;
+  }
+
+  /* 右上角滑出按钮 */
+  #slideBtn_2 {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  #slideBtn_2:hover {
+    background-color: #1565c0;
+  }
+
+  #slideBtn_2.shifted{
+  transform: translate(-90%,-50%); 
+  }
+  

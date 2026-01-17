@@ -1,0 +1,32 @@
+14:35:21.724 [main] INFO  com.example.demo.DemoApplication - Starting DemoApplication using Java 17.0.1 with PID 26160 (D:\MEAN_PAN\test_2\demo\target\classes started by ml323 in D:\MEAN_PAN\test_2\demo)
+14:35:21.738 [main] INFO  com.example.demo.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+14:35:23.500 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+14:35:23.515 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+14:35:23.525 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+14:35:23.528 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.39]
+14:35:23.615 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+14:35:23.616 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1808 ms
+14:35:23.779 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'chunkCacheManager': Unsatisfied dependency expressed through field 'chunkRepository': Error creating bean with name 'chunkRepository': Unsatisfied dependency expressed through field 'chunkMapper': Error creating bean with name 'chunkMapper' defined in file [D:\MEAN_PAN\test_2\demo\target\classes\com\example\demo\Mapper\ChunkMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+14:35:23.779 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+14:35:23.806 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+14:35:23.837 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+

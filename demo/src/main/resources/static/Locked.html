@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>锁定</title>
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background-color: #fff3f3;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .lock-container {
+          text-align: center;
+          padding: 40px;
+          background-color: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .lock-icon {
+          font-size: 64px;
+          color: #e74c3c;
+          margin-bottom: 20px;
+        }
+
+        .lock-title {
+          font-size: 28px;
+          font-weight: bold;
+          color: #c0392b;
+          margin-bottom: 10px;
+        }
+
+        .lock-text {
+          font-size: 18px;
+          color: #555;
+          margin-bottom: 20px;
+        }
+
+        .tip {
+          font-size: 14px;
+          color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="lock-container">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">已锁定</div>
+    <div class="lock-text">密码输入错误超过三次，为保障安全已锁定登录。</div>
+    <div class="tip">请稍后再试，或联系管理员。</div>
+</div>
+</body>
+</html>
